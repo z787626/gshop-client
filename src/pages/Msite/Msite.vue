@@ -2,12 +2,15 @@
   <section class="msite">
     <!--首页头部-->
     <HeaderTop :title="address.name">
-      <span class="header_search" slot="left">
+      <router-link to="/search" class="header_search" slot="left">
             <i class="iconfont icon-sousuo"></i>
-      </span>
-      <span class="header_login" slot="right">
-            <span class="header_login_text">登录|注册</span>
-      </span>
+      </router-link>
+      <router-link :to="userInfo._id ? 'userinfo' : '/login'" class="header_login" slot="right">
+            <span class="header_login_text" v-if="!userInfo._id">登录|注册</span>
+            <span class="header_login_text" v-else>
+            <i class="iconfont icon-person"></i>
+            </span>
+      </router-link>
     </HeaderTop>
     <!--首页导航-->
     <nav class="msite_nav">
@@ -56,7 +59,7 @@ export default {
     this.$store.dispatch('getShops')
   },
   computed: {
-    ...mapState(['address', 'categorys']),
+    ...mapState(['address', 'categorys', 'userInfo']),
     /*
     根据categorys一维数据生成一个2维数组
     小数组中的元素最大是8

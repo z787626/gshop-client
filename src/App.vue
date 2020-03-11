@@ -12,9 +12,10 @@ export default {
   mounted () {
     // this.$store.dispatch('getAddress') 请求地址信息方式1
     this.getAddress()
+    this.getUserInfo()
   },
   methods: {
-    ...mapActions(['getAddress']) // 请求地址信息方式2 mapActions
+    ...mapActions(['getAddress', 'getUserInfo']) // 请求地址信息方式2 mapActions
   },
   components: {
     FooterGuide
